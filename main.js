@@ -5,48 +5,53 @@ import Precio from "./precio.js";
 import Producto from "./producto.js";
 import ElementoPedidio from "./elementopedido.js"
 import ElementoPedido from "./elementopedido.js";
+import Cliente from "./cliente.js";
+
+var productos = [];
+var clientes = [];
+var pedidos = [];
+
 class Main{
-    constructor(){
-        this.fecha=new Fecha(5,9,2001);
-        this.tiempo=new Tiempo();
-        this.direccion=new Direccion("Av. de los Maestros",230,11,"San Isidro",28987,"Colima","Villa de Álvarez" );
-        this.ElementoPedidio=new ElementoPedido(2,"Pizza",200);
+    registrarProducto(producto) {
+        let r=new Producto(producto).getDescripcion();
+        productos.push(r);
     }
-    testFecha(){
-        
-        let años=this.fecha.getAños();
-        console.log(años)
-        let meses=this.fecha.getMeses(años);
-        console.log(meses)
-        let semanas=this.fecha.getSemanas(meses);
-        console.log(semanas)
-        let dias=this.fecha.getDias(semanas);
-        console.log(dias)
-        let fecha=this.fecha.getFecha();
-        console.log(fecha)
-        let diaF=this.fecha.getDiaFecha();
-        console.log(diaF)
+    listarProductos(){
+        console.log(productos);
     }
-    testTiempo(){
-        let hora=this.tiempo.getFormato12();
-        console.log(hora);
-        let horaC=this.tiempo.getFormato24();
-        console.log(horaC);
+    registrarCliente(cliente){
+        let r=new Cliente(cliente).getPerfil();
+        clientes.push(r);
     }
-    testDireccion(){
-        let direccionFC=this.direccion.getFormatoCorto();
-        console.log(direccionFC);
-        let formatoComp=this.direccion.getFormatoCompl();
-        console.log(formatoComp);
+    listarClientes(){
+        console.log(clientes);
     }
-    testElementoPedido(){
-        let descr=this.ElementoPedidio.getDescripcion();
-        console.log(descr);
+    registrarPedido(pedido){
+        pedidos.push(pedido);
     }
-    
+    listarPedidos(){
+        console.log(pedidos);
+    }
 }
 let app=new Main();
-app.testFecha();
-app.testTiempo();
-app.testDireccion();
-app.testElementoPedido();
+app.registrarCliente({
+    nombre: "Pancho López",
+    calle: "Girasol",
+    numExt: "523",
+    numInt: "B",
+    colonia: "Lomas de las Flores", 
+    cp: "28979",
+    ciudad: "Chanchopa",
+    mpio: "Coquimatlán",
+    telefono: "31232456"
+})
+app.listarClientes();
+app.registrarProducto({
+    nombre:"Pizza",
+    valor: 200
+})
+app.registrarProducto({
+    nombre:"Hamburguesa",
+    valor: 150
+})
+app.listarProductos();

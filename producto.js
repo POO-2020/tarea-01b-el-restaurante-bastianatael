@@ -1,11 +1,12 @@
 import Precio from "./precio.js"
 export default class Producto{
-    constructor(nombre,valor){
-        this.nombre=nombre;
-        this.precio=valor;
+    constructor(producto){
+        this.producto=producto;
     }
     getDescripcion(){
-        let descr=`${this.nombre}`
+        let nombre=this.producto.nombre;
+        let valor=new Precio(this.producto.valor).getPrecioM();
+        let descr=`${nombre} ${valor}   `
         return descr;
     }
 }
